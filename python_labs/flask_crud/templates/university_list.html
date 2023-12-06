@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>University list</title>
+</head>
+<body>
+    <a href="/">Главная</a>
+    <a href="university/create">Добавить университет</a>
+    <h2>Список университетов</h2>
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>Название</th>
+            <th>Короткое название</th>
+            <th>Дата создания</th>
+            <th>Действие</th>
+        </thead>
+        {% for university in university_list %}
+        <tr>
+            <td>{{ university.id }}</td>
+            
+            <td>
+                <a href="university/{{university.id}}">{{ university.name }}</a>
+            </td>
+            <td>{{ university.short_name }}</td>
+            <td>{{ university.create_date }}</td>
+            <td><a href="university/delete/{{university.id}}">Удалить</a></td>
+            <td><a href="university/change/{{university.id}}">Изменить</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

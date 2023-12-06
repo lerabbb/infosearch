@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Студент {{student_id}}</title>
+</head>
+<body>
+    <a href="/student">К студентам</a>
+    <a href="student/change/{{student_id}}">Изменить</a>
+    <h1>Информация о студенте</h1>
+    <p>Фамилия: {{firstname}}</p>
+    <p>Имя: {{lastname}}</p>
+    <p>Отчество: {{patronymic}}</p>
+    <p>Дата рождения: {{birthdate}}</p>
+    <p>Университет: {{university.name}}</p>
+    <p>Дата поступления: {{entrance_date}}</p>
+</body>
+</html>
