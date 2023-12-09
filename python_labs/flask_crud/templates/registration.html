@@ -5,13 +5,19 @@
     <title>Регистрация</title>
 </head>
 <body>
-    <a href="/login">Авторизация</a>
-    <h1>Зарегистрируйтесь</h1>
-    <form method="POST" >
-        {% csrf_token %}
-    <table>
-        {{ form }}
-    </table>
-    <input type="submit" value="Registration" >
+    <a href="/auth">Авторизация</a>
+    <form method="POST" action="registration">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend>Зарегистрируйтесь</legend>
+            {{ form.name.label }}
+            {{ form.name }}
+            {{ form.email.label }}
+            {{ form.email }}
+            {{ form.password.label }}
+            {{ form.password }}
+        </fieldset>
+        {{ form.submit }}
+    </form>
 </body>
 </html>

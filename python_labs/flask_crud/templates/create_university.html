@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Create university</title>
+</head>
+<body>
+    <h1>Create university</h1>
+    <form method="POST" action="create_university, change_university">
+        {{ form.hidden_tag() }}
+        <table>
+            <legend>Создайте университет</legend>
+            {{ form.name.label }}
+            {{ form.name }}
+            {{ form.shortname.label }}
+            {{ form.shortname }}
+            {{ form.create_date.label }}
+            {{ form.create_date }}
+        </table>
+        {{ form.submit }}
+    </form>
+</body>
+</html>

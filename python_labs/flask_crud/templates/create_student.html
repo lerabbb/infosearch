@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Create student</title>
+</head>
+<body>
+    <h1>Create student</h1>
+    <form method="POST" action="create_student, change_student">
+        {{ form.hidden_tag() }}
+        <table>
+            <legend>Создайте университет</legend>
+            <td>{{ form.firstname.label }}</td>
+            <td>{{ form.firstname }}</td>
+            <td>{{ form.lastname.label }}</td>
+            <td>{{ form.lastname }}</td>
+            <td>{{ form.patronymic.label }}</td>
+            <td>{{ form.patronymic }}</td>
+            <td>{{ form.birthdate.label }}</td>
+            <td>{{ form.birthdate }}</td>
+            <td>{{ form.entrance_date.label }}</td>
+            <td>{{ form.entrance_date }}</td>
+            <td>{{ form.university.label }}</td>
+            <td>{{ form.university }}</td>
+        </table>
+        {{ form.submit }}
+    </form>
+</body>
+</html>

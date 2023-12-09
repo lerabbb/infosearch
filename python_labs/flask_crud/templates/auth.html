@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Авторизация</title>
+</head>
+<body>
+    <a href="/registration">Зарегистрироваться</a>
+    <form method="POST" action="login">
+        {{ form.hidden_tag() }}
+        <table>
+            <legend>Авторизуйтесь</legend>
+            {{ form.email.label }}
+            {{ form.email }}
+            {{ form.password.label }}
+            {{ form.password }}
+        </table>
+        {{ form.submit }}
+    </form>
+</body>
+</html>

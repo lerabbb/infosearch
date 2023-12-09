@@ -1,18 +1,13 @@
-import secrets
-from flask import Flask
+from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 
-application = Flask(__name__) 
-application.config['SECRET_KEY'] = secrets.token_hex(16)
-application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost:3306/university_db'
-application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(application)
+db = SQLAlchemy()
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
-    name = db.Column(db.String(1000))
+    name = db.Column(db.String(100))
 
     def validate_password(self, password) -> bool:
         return self.password == password
@@ -34,9 +29,9 @@ class Student(db.Model):
     lastname = db.Column(db.String(100), unique=True)
     patronymic = db.Column(db.String(100), unique=True)
     birthdate = db.Column(db.Date)
-    university_id = db.Column(db.Integer, db.ForeignKey('university.id'), nullable=True)
-    university = db.relationship('University', backref=db.backref('students'))
     entrance_date = db.Column(db.Date)
+    university_id = db.Column(db.BigInteger, db.ForeignKey('university.id'))
+    university = db.relationship('University', backref='students')
 
     def __repr__(self):
         return f"{self.firstname} {self.lastname} {self.patronymic}"
