@@ -41,7 +41,6 @@ def create_university():
             shortname = request.form.get("shortname"),
             create_date = request.form.get("create_date")
         )
-        print(university.shortname)
         db.session.add(university)
         db.session.commit()
         return redirect(url_for('views.university_list'))
@@ -56,11 +55,9 @@ def change_university(id):
     if request.method == "GET":
         return render_template("create_university.html", form=form)
     elif request.method == "POST":
-        university = University(
-            name = request.form.get("name"),
-            shortname = request.form.get("shortname"),
-            create_date = request.form.get("create_date")
-        )
+        university.name = request.form.get("name")
+        university.shortname = request.form.get("shortname")
+        university.create_date = request.form.get("create_date")
         db.session.commit()
         return redirect(url_for('views.university_list'))
 
@@ -105,37 +102,40 @@ def get_student(id):
 def create_student():
     form = StudentForm()
     if request.method == "GET":
-        return render_template("create_student.html", title = "Студент", form=form)
+        return render_template("create_student.html", form=form)
     elif request.method == "POST":
+        university = University.query.get(form.university.data)
         student = Student(
             firstname=request.form.get("firstname"),
             lastname=request.form.get("lastname"),
             patronymic=request.form.get("patronymic"),
             birthdate=request.form.get("birthdate"),
-            university=request.form.get("university"),
+            university=university,
             entrance_date=request.form.get("entrance_date"),
         )
         db.session.add(student)
         db.session.commit()
-        return redirect('/student')
+        return redirect(url_for('views.student_list'))
+
 
 
 @views.route('/student/change/<int:id>', methods=['GET', 'POST'])
 @login_required
 def change_student(id):
-    student = Student.query.get(id)
-    form = StudentForm(student)
+    student = Student.query.get(ident=id)
+    form = StudentForm(obj=student)
+    form.university.query = University.query.all()
+    print(form.firstname)
+    print(form.university)
     if request.method == "GET":
-        return render_template("create_student.html", title = "Студент", form=form)
+        return render_template("create_student.html", form=form)
     elif request.method == "POST":
-        student = Student(
-            firstname=request.form.get("firstname"),
-            lastname=request.form.get("lastname"),
-            patronymic=request.form.get("patronymic"),
-            birthdate=request.form.get("birthdate"),
-            university=request.form.get("university"),
-            entrance_date=request.form.get("entrance_date"),
-        )
+        student.firstname=request.form.get("firstname")
+        student.lastname=request.form.get("lastname")
+        student.patronymic=request.form.get("patronymic")
+        student.birthdate=request.form.get("birthdate")
+        student.university_id=request.form.get("university")
+        student.entrance_date=request.form.get("entrance_date")
         db.session.commit()
         return redirect(url_for('views.student_list'))
 

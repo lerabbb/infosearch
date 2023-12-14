@@ -6,8 +6,8 @@
 </head>
 <body>
     <h1>Create student</h1>
-    <form method="POST" action="create_student, change_student">
-        {{ form.hidden_tag() }}
+    <form method="POST">
+        {{ form.csrf_token }}
         <table>
             <legend>Создайте университет</legend>
             <td>{{ form.firstname.label }}</td>

@@ -1,6 +1,6 @@
 from flask import Flask
 from os import path
-from flask_crud.models import User, Student, University, db
+from flask_crud.models import db
 from flask_crud.views import views
 from flask_crud.auth import auth
 from flask_login import LoginManager
@@ -17,12 +17,13 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
-    
     with app.app_context():
         db.create_all()
 
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")
+
+    from flask_crud.models import User, Student, University
 
     @login_manager.user_loader
     def load_user(id):
