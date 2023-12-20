@@ -10,12 +10,18 @@
         {{ form.csrf_token }}
         <table>
             <legend>Создайте университет</legend>
-            {{ form.name.label }}
-            {{ form.name }}
-            {{ form.shortname.label }}
-            {{ form.shortname }}
-            {{ form.create_date.label }}
-            {{ form.create_date }}
+            <tr>
+                <td>{{ form.name.label }}</td>
+                <td>{{ form.name }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.shortname.label }}</td>
+                <td>{{ form.shortname }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.create_date.label }}</td>
+                <td>{{ form.create_date }}</td>
+            </tr>
         </table>
         {{ form.submit }}
     </form>

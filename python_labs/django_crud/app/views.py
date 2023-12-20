@@ -35,7 +35,7 @@ def create_university(request):
             create_date = request.POST.get("create_date")
         )
         new_id = new_university.id
-        return HttpResponseRedirect(f"/first_app/university/{new_id}")
+        return HttpResponseRedirect(f"/app/university/{new_id}")
     else:
         data = {
             "title": "University",
@@ -52,7 +52,7 @@ def update_university(request, id):
                 short_name = request.POST.get("short_name"),
                 create_date = request.POST.get("create_date")
             )
-            return HttpResponseRedirect(f"/first_app/university/{id}")
+            return HttpResponseRedirect(f"/app/university/{id}")
         else:
             university = models.University.objects.get(id=id)
             data = {
@@ -69,7 +69,7 @@ def delete_university(request, id):
     try:
         university = models.University.objects.get(id=id)
         university.delete()
-        return HttpResponseRedirect("/first_app/university")
+        return HttpResponseRedirect("/app/university")
     except models.University.DoesNotExist:
         return HttpResponseNotFound(f"Нет такого университета с id={id}")
 
@@ -113,7 +113,7 @@ def create_student(request):
                 entrance_date = request.POST.get("entrance_date")
             )
             new_id = new_student.id
-            return HttpResponseRedirect(f"/first_app/student/{new_id}")
+            return HttpResponseRedirect(f"/app/student/{new_id}")
         else:
             data = {
                 "title": "Student",
@@ -137,7 +137,7 @@ def update_student(request, id):
                 university = university,
                 entrance_date = request.POST.get("entrance_date")
             )
-            return HttpResponseRedirect(f"/first_app/student/{id}")
+            return HttpResponseRedirect(f"/app/student/{id}")
         else:
             student = models.Student.objects.get(id=id)
             data = {
@@ -154,6 +154,6 @@ def delete_student(request, id):
     try:
         res = models.Student.objects.get(id=id)
         res.delete()
-        return HttpResponseRedirect("/first_app/student")
+        return HttpResponseRedirect("/app/student")
     except models.Student.DoesNotExist:
         return HttpResponseNotFound(f"Нет такого студента с id={id}")

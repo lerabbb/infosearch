@@ -65,12 +65,11 @@ def change_university(id):
 @views.route('/university/delete/<int:id>')
 @login_required
 def delete_university(id):
-    if request.method == "POST":
-        university = University.query.get(ident=id)
-        db.session.delete(university)
-        db.session.commit()
-        return redirect(url_for('views.university_list'))
-
+    university = University.query.get(ident=id)
+    db.session.delete(university)
+    db.session.commit()
+    return redirect(url_for('views.university_list'))
+    
 
 @views.route('/student', methods=['GET'])
 @login_required
@@ -125,8 +124,6 @@ def change_student(id):
     student = Student.query.get(ident=id)
     form = StudentForm(obj=student)
     form.university.query = University.query.all()
-    print(form.firstname)
-    print(form.university)
     if request.method == "GET":
         return render_template("create_student.html", form=form)
     elif request.method == "POST":
@@ -140,11 +137,10 @@ def change_student(id):
         return redirect(url_for('views.student_list'))
 
 
-@views.route('/student/delete/<int:id>', methods=["POST"])
+@views.route('/student/delete/<int:id>')
 @login_required
 def delete_student(id):
-     if request.method == "POST":
-        student = Student.query.get(ident=id)
-        db.session.delete(student)
-        db.session.commit()
-        return redirect(url_for('views.student_list'))
+    student = Student.query.get(ident=id)
+    db.session.delete(student)
+    db.session.commit()
+    return redirect(url_for('views.student_list'))

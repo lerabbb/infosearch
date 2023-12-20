@@ -9,19 +9,31 @@
     <form method="POST">
         {{ form.csrf_token }}
         <table>
-            <legend>Создайте университет</legend>
-            <td>{{ form.firstname.label }}</td>
-            <td>{{ form.firstname }}</td>
-            <td>{{ form.lastname.label }}</td>
-            <td>{{ form.lastname }}</td>
-            <td>{{ form.patronymic.label }}</td>
-            <td>{{ form.patronymic }}</td>
-            <td>{{ form.birthdate.label }}</td>
-            <td>{{ form.birthdate }}</td>
-            <td>{{ form.entrance_date.label }}</td>
-            <td>{{ form.entrance_date }}</td>
-            <td>{{ form.university.label }}</td>
-            <td>{{ form.university }}</td>
+            <legend>Создайте студента</legend>
+            <tr>
+                <td>{{ form.firstname.label }}</td>
+                <td>{{ form.firstname }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.lastname.label }}</td>
+                <td>{{ form.lastname }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.patronymic.label }}</td>
+                <td>{{ form.patronymic }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.birthdate.label }}</td>
+                <td>{{ form.birthdate }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.entrance_date.label }}</td>
+                <td>{{ form.entrance_date }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.university.label }}</td>
+                <td>{{ form.university }}</td>
+            </tr>
         </table>
         {{ form.submit }}
     </form>
