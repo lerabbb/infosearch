@@ -4,7 +4,9 @@ def check(str):
         if c=="(":
             counter+=1
         else:
-            counter-=1    
+            counter-=1
+        if counter < 0:
+            return False
     return counter==0
 
 
